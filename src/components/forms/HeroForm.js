@@ -4,9 +4,11 @@ import { faLink } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {signIn} from 'next-auth/react';
 import { useEffect } from "react";
-import {redirect} from "next/navigation";
+import {redirect, useRouter } from "next/navigation";
 
-export default function HeroForm() {
+export default function HeroForm({user}) {
+
+    const router = useRouter();
 
     useEffect(() => {
         if (
@@ -24,8 +26,12 @@ export default function HeroForm() {
         const input = form.querySelector('input');
         const username = input.value;
         if (username.length > 0) {
-            window.localStorage.setItem('desiredUsername', username);
-            await signIn('google');
+            if (user) {
+                router.push('/account?desiredUsername=' + username)
+            } else {
+                window.localStorage.setItem('desiredUsername', username);
+                await signIn('google');
+            }
         }
     }
 
