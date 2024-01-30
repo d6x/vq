@@ -17,9 +17,7 @@ export default async function AccountPage({searchParams}) {
   if (page) {
     return (
       <>
-        <PageSettingsForm page={leanPage} user={session.user} />
-        <PageButtonsForm page={leanPage} user={session.user} />
-        <PageLinksForm page={leanPage} user={session.user} />
+        <div>Your VQ Page is /{page.uri}</div>
       </>
     );
   }

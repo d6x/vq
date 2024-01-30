@@ -14,7 +14,7 @@ export default function UsernameForm({desiredUsername}) {
         const result = await grabUsername(formData);
         setTaken(result === false);
         if (result) {
-            redirect('/account/'+formData.get('username'));
+            redirect('/account?created='+formData.get('username'));
         }
     }
 
