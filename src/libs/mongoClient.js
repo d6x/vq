@@ -1,3 +1,4 @@
+// This approach is taken from https://github.com/vercel/next.js/tree/canary/examples/with-mongodb
 import { MongoClient } from "mongodb"
 
 if (!process.env.MONGO_URI) {
@@ -8,7 +9,8 @@ const uri = process.env.MONGO_URI
 const options = {}
 
 let client
-let clientPromise;
+let clientPromise
+
 if (process.env.NODE_ENV === "development") {
   // In development mode, use a global variable so that the value
   // is preserved across module reloads caused by HMR (Hot Module Replacement).
